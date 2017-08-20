@@ -1,0 +1,14 @@
+{
+  "name": "cordova-plugin-tongdun",
+  "version": "1.0.0",
+  "description": "A cordova plugin for TongDun integration",
+  "cordova": {
+    "id": "cordova-plugin-tongdun",
+    "platforms": []
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "xu.li <AthenaLightenedMyPath@gmail.com>",
+  "license": "MIT"
+}

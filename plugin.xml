@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-tongdun" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>TongDun</name>
+    <js-module name="TongDun" src="www/TongDun.js">
+        <clobbers target="cordova.plugins.TongDun" />
+    </js-module>
+
+    <preference name="TONGDUN_SANDBOX" default="false" />
+    <preference name="TONGDUN_PARTNER_ID" />
+    
+    <!-- android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="TongDun">
+                <param name="android-package" value="xu.li.cordova.tongdun.TongDun"/>
+            </feature>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET"/>
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.BATTERY_STATS" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.GET_TASKS" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES"/>
+
+        </config-file>
+
+        <config-file target="AndroidManifest.xml" parent="application">
+            <meta-data android:name="PARTNER_CODE" android:value="$TONGDUN_PARTNER_ID" />
+        </config-file>
+
+
+        <source-file src="src/android/TongDun.java" target-dir="src/xu/li/cordova/tongdun" />
+        <source-file src="src/android/libs/fm-sdk-3.0.1.jar" target-dir="libs" />
+        <source-file src="src/android/libs/armeabi/libtongdun.so" target-dir="libs/armeabi" />
+        <source-file src="src/android/libs/arm64-v8a/libtongdun.so" target-dir="libs/arm64-v8a" />
+        <source-file src="src/android/libs/armeabi-v7a/libtongdun.so" target-dir="libs/armeabi-v7a" />
+        <source-file src="src/android/libs/mips/libtongdun.so" target-dir="libs/mips" />
+        <source-file src="src/android/libs/x86/libtongdun.so" target-dir="libs/x86" />
+        <source-file src="src/android/libs/x86_64/libtongdun.so" target-dir="libs/x86_64" />
+        <resource-file src="src/android/assets/fm-core-3.0.1" target="assets" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="TongDun">
+                <param name="ios-package" value="CDVTongDun"/>
+                <param name="onload" value="true" />
+            </feature>
+            <preference name="TONGDUN_SANDBOX" value="$TONGDUN_SANDBOX"/>
+            <preference name="TONGDUN_PARTNER_ID" value="$TONGDUN_PARTNER_ID"/>
+        </config-file>
+
+
+        <!-- Plugin source code -->
+        <header-file src="src/ios/CDVTongDun.h" />
+        <source-file src="src/ios/CDVTongDun.m" />
+
+        <header-file src="src/ios/libs/FMDeviceManager.h" />
+        <source-file src="src/ios/libs/libFMDeviceManager.a" framework="true" />
+
+
+        <framework src="libresolv.9.tbd" />
+    </platform>
+    
+    
+</plugin>
